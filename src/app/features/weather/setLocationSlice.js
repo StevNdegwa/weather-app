@@ -1,0 +1,14 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+const setLocationSlice = createSlice({
+  name: "selectedLocation",
+  initialState: "munich",
+  reducers: {
+    setLocation(state, location) {
+      return location;
+    }
+  }
+})
+
+export const { setLocation } = setLocationSlice.actions;
+export default setLocationSlice.reducer;
