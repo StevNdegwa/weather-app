@@ -3,6 +3,7 @@ import { renderHook } from "@testing-library/react-hooks";
 import { Provider } from "react-redux";
 import { setupApiStore } from "../../../testUtils";
 import weatherForecastApi, { baseUrl, useGetWeatherForecastQuery } from "./weatherForecastApi";
+import { responseData } from "./testData";
 
 beforeEach(() => {
   fetchMock.resetMocks();
@@ -11,7 +12,7 @@ beforeEach(() => {
 describe("test weather forecast api", () => {
   const storeRef = setupApiStore(weatherForecastApi);
 
-  fetchMock.mockResponse(JSON.stringify({}));
+  fetchMock.mockResponse(JSON.stringify(responseData));
 
   test("request is correct", () => {
 
@@ -27,14 +28,14 @@ describe("test weather forecast api", () => {
         const authorization = headers.get(Headers.Authorization);
 
         expect(method).toBe("GET");
-        expect(url).toBe(`${baseUrl}?q=munich&appid=730f0bf91b40d671b109f2e529d29165&units=metric`);
+        expect(url).toBe(`${baseUrl}?q=munich&appid=730f0bf91b40d671b109f2e529d29165&cnt=40`);
         expect(authorization).toBeNull();
       });
   });
 
   test("successful response", () => {
     const storeRef = setupApiStore(weatherForecastApi);
-    fetchMock.mockResponse(JSON.stringify([]));
+    fetchMock.mockResponse(JSON.stringify(responseData));
 
     return storeRef.store
       .dispatch(
@@ -44,7 +45,17 @@ describe("test weather forecast api", () => {
         const { status, data, isSuccess } = action;
         expect(status).toBe("fulfilled");
         expect(isSuccess).toBe(true);
-        expect(data).toStrictEqual([]);
+        expect(data).toStrictEqual({
+          ...responseData,
+          forecast: [
+            {
+              "date": "2021-11-29 21:00:00",
+              "description": "light snow",
+              "icon": "http://openweathermap.org/img/wn/13n@4x.png",
+              "temperature": 30.16,
+            },
+          ]
+        });
       });
   });
 
@@ -81,7 +92,7 @@ describe("test useGetWeatherForecastQuery", () => {
   });
 
   test("should fetch weather forecast data", async () => {
-    fetchMock.mockResponse(JSON.stringify({}));
+    fetchMock.mockResponse(JSON.stringify(responseData));
 
     const { result, waitForNextUpdate } = renderHook(
       () => useGetWeatherForecastQuery("munich"),

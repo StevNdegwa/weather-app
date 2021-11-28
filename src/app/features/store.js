@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import reducer from "./reducers";
+import { weatherApiMiddleware } from "./weather/weatherForecastApi";
 
 const store = configureStore({
-  reducer
+  reducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(weatherApiMiddleware),
 })
 
 export default store;

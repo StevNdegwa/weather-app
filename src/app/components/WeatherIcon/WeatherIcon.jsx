@@ -1,4 +1,6 @@
-export default function WeatherIcon() {
+import { memo } from "react";
+
+const WeatherIcon = memo(() => {
   return (
     <lottie-player
       src="https://assets3.lottiefiles.com/packages/lf20_xx4r8tdi.json"
@@ -9,4 +11,6 @@ export default function WeatherIcon() {
       autoplay
     ></lottie-player>
   );
-}
+});
+
+export default WeatherIcon;

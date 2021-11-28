@@ -2,7 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const setLocationSlice = createSlice({
   name: "selectedLocation",
-  initialState: "munich",
+  initialState: {
+    name: "Munich",
+    country: "Germany"
+  },
   reducers: {
     setLocation(state, location) {
       return location;

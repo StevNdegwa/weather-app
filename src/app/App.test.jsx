@@ -1,42 +1,49 @@
 import { mount } from "enzyme";
+import fetchMock from "jest-fetch-mock";
 import { Provider } from "react-redux";
-import { Box, GlobalStyles } from "@mui/material";
-import store from "./features/store";
+import { GlobalStyles } from "@mui/material";
 import { appLoaded } from "./features/loader/appLoadingSlice";
+import store from "./features/store";
 import AppLoader from "./components/AppLoader";
+import AppLayout from "./components/AppLayout";
+import WeatherDashBoard from "./components/WeatherDashBoard";
+import AppErrorBoundary from "./components/AppErrorBoundary";
+
 import App from "./App";
 
 describe("test <App/> component", () => {
-  test("should render the GlobalStyles component", () => {
-    let wrapper = mount(
+  let wrapper;
+
+  beforeEach(() => {
+    fetchMock.resetMocks();
+
+    wrapper = mount(
       <Provider store={store}>
         <App />
       </Provider>
     );
-
-    expect(wrapper.find(App).childAt(0).type()).toEqual(GlobalStyles);
   });
 
-  test("should render the AppLoader component by default", () => {
-    
-    let wrapper = mount(
-      <Provider store={store}>
-        <App />
-      </Provider>
-    );
-    
-    expect(wrapper.find(App).childAt(1).type()).toEqual(AppLoader);
+  test("snapshot testing", () => {
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
-  test("should render the weather information dashboard", () => {
+  test("should render AppLayout component", () => {
+    expect(wrapper.find(AppLayout)).toHaveLength(1);
+  });
+
+  test("should render all the components by default", () => {
+    expect(wrapper.find(GlobalStyles)).toHaveLength(1);
+    expect(wrapper.find(AppLoader)).toHaveLength(1);
+    expect(wrapper.find(WeatherDashBoard)).toHaveLength(0);
+    expect(wrapper.find(AppErrorBoundary)).toHaveLength(1);
+  });
+
+  test("should not render the application loader", () => {
     store.dispatch(appLoaded());
-    
-    let wrapper = mount(
-      <Provider store={store}>
-        <App />
-      </Provider>
-    );
-    
-    expect(wrapper.find(App).childAt(1).type()).toEqual(Box);
+    wrapper.update();
+    expect(wrapper.find(AppLoader)).toHaveLength(0);
+    expect(wrapper.find(WeatherDashBoard)).toHaveLength(1);
   });
+
 });

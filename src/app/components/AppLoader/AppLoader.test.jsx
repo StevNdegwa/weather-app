@@ -1,13 +1,17 @@
 import { shallow } from "enzyme";
-import { AppLoaderContent } from "./styles";
+import { AppLoaderWrapper } from "./styles";
 import AppLoader from "./AppLoader";
 
 describe("test <AppLoader/> component", () => {
   let wrapper;
 
-  beforeEach(()=>wrapper = shallow(<AppLoader/>))
+  beforeEach(() => (wrapper = shallow(<AppLoader />)));
+
+  test("snapshot testing", () => {
+    expect(wrapper.html()).toMatchSnapshot();
+  });
 
   test("should contain the wrapper component", () => {
-    expect(wrapper.find(AppLoaderContent)).toHaveLength(1);
-  })
+    expect(wrapper.find(AppLoaderWrapper)).toHaveLength(1);
+  });
 });

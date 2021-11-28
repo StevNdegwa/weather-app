@@ -10,11 +10,17 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "d3-array": "^3.1.1",
+    "d3-scale": "^4.0.2",
+    "d3-time-format": "^4.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-loader-spinner": "^4.0.0",
     "react-redux": "^7.2.6",
     "react-scripts": "4.0.3",
-    "react-spinners": "^0.11.0",
+    "react-slideshow-image": "^3.6.0",
+    "recharts": "^2.1.6",
     "redux-toolkit": "^1.1.2",
     "web-vitals": "^1.0.1"
   },
@@ -22,13 +28,16 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "coverage": "react-scripts test --env=jsdom --coverage --watchAll=false"
+    "eject": "react-scripts eject"
   },
   "jest": {
     "coveragePathIgnorePatterns": [
       "/reportWebVitals.js",
       ".*/index.js"
+    ],
+    "transformIgnorePatterns": [
+      "/node_modules/?!(d3-time-format)",
+      "/node_modules/?!(react-spinners/FadeLoader)"
     ]
   },
   "eslintConfig": {

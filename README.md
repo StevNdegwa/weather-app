@@ -1,70 +1,54 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Weather App
 
-## Available Scripts
+An app to check the weather
 
-In the project directory, you can run:
+## Uses
+- [ReactJS](https://reactjs.org/) UI library
+- [Redux toolkit](https://redux-toolkit.js.org/) state management library
+- [Jest](https://jestjs.io/) for unit testing
+- [Enzyme](https://enzymejs.github.io/enzyme/) for react components testing
+- [MUI](https://mui.com/) component library
+- [Recharts](https://recharts.org/) data visualization framework
+- [D3 date formating library](https://github.com/d3/d3-time-format)
 
-### `yarn start`
+## Features
+- A **loading screen** is shown when loading the application
+- A **weather dashboard** that includes a 5 days weather forecast and,
+    - **Temperature scale switch** to switch between Fahrenheit and Celcius
+    - **Refresh button** to reload the weather forecast data
+    - **Weather cards** to display weather forecast information
+        - Temperature
+        - Weather icon
+        - Weather description
+        - Forecast time
+        - Forecast day
+    - **A slider** for the weather cards
+    - The slider **progress indicator**
+    - A **home button** to slide to the first card
+    - A **bar chart** for temperature data visualization. The barchart is shown once a card has been selected
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Other Technical Features
+- Uses git version control
+- Hosted on netlify
+- React:
+    - Error boundaries to handle any runtime errors
+    - React hooks
+    - Single responsibility principle
+    - React memoization
+- Redux:
+    - Uses redux toolkit framework for state management
+    - Uses RTK Query for data fetching, which has been configured to store data to Redux
+- Responsivity
+    - Uses Javascript hence the rensposivity is adjusted when loading the application
+    - Shows 3 weather cards when on desktop and 1 card when on mobile
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Design techniques
+- Uses material design
+- Glassmorphism
+- UI Accessibility
+- Proper data values formatting
+## Authors
 
-### `yarn test`
+- [@stevndegwa](https://github.com/StevNdegwa)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
