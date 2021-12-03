@@ -3,7 +3,7 @@ import { renderHook } from "@testing-library/react-hooks";
 import { Provider } from "react-redux";
 import { setupApiStore } from "../../../testUtils";
 import weatherForecastApi, { baseUrl, useGetWeatherForecastQuery } from "./weatherForecastApi";
-import { responseData } from "./testData";
+import { responseData } from "../../data/testData";
 
 beforeEach(() => {
   fetchMock.resetMocks();

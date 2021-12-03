@@ -1,4 +1,4 @@
-import reducer, { setLocation } from "./setLocationSlice";
+import setLocationSlice, { setLocation } from "./setLocationSlice";
 
 const initialState = {
   name: "Munich",
@@ -8,11 +8,11 @@ const initialState = {
 describe("test selectedLocationSlice", () => {
 
   test("should return the initial state", () => {
-    expect(reducer(undefined, {})).toEqual(initialState);
+    expect(setLocationSlice.reducer(undefined, {})).toEqual(initialState);
   });
 
   test("should update selected location state", () => {
-    expect(reducer(initialState, setLocation({
+    expect(setLocationSlice.reducer(initialState, setLocation({
       name: "Nairobi",
       country: "KE"
     })).payload)

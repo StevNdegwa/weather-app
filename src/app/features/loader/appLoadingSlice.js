@@ -11,4 +11,4 @@ const appLoadingSlice = createSlice({
 })
 
 export const { appLoaded } = appLoadingSlice.actions;
-export default appLoadingSlice.reducer;
+export default appLoadingSlice;

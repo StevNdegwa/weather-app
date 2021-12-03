@@ -8,6 +8,7 @@ An app to check the weather
 - [Redux toolkit](https://redux-toolkit.js.org/) state management library
 - [Jest](https://jestjs.io/) for unit testing
 - [Enzyme](https://enzymejs.github.io/enzyme/) for react components testing
+- [React testing library](https://testing-library.com/) for react components and hooks testing
 - [MUI](https://mui.com/) component library
 - [Recharts](https://recharts.org/) data visualization framework
 - [D3 date formating library](https://github.com/d3/d3-time-format)

@@ -1,14 +1,14 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import appLoadingSliceReducer from "./loader/appLoadingSlice";
+import appLoadingSlice from "./loader/appLoadingSlice";
 import weatherForecastApi from "./weather/weatherForecastApi";
 import setLocationSlice from "./weather/setLocationSlice";
 import selectedScale from "./weather/selectedScaleSlice";
 import selectedCardSlice from "./weather/selectedCardSlice";
 
 export const reducers = {
-  appLoading: appLoadingSliceReducer,
+  appLoading: appLoadingSlice.reducer,
   weatherForecastApi: weatherForecastApi.reducer,
-  setLocation: setLocationSlice,
+  setLocation: setLocationSlice.reducer,
   selectedScale: selectedScale.reducer,
   selectedCard: selectedCardSlice.reducer,
 }

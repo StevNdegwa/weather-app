@@ -46,9 +46,9 @@ const WeatherCardsSlider = forwardRef(
     );
 
     useEffect(() => {
-      window.addEventListener("keydown", slideOnKeyDown);
+      document.addEventListener("keydown", slideOnKeyDown);
       return () => {
-        window.removeEventListener("keydown", slideOnKeyDown);
+        document.removeEventListener("keydown", slideOnKeyDown);
       };
     }, [slideOnKeyDown]);
 
