@@ -51,49 +51,56 @@ export default function TemperatureChart({ open, closeModal }) {
       aria-describedby="modal-modal-description"
     >
       <ChartWrapper>
-        <Stack spacing={1} style={{ textAlign: "center" }}>
-          <Typography as="h4">
-            Temperature chart in &deg;{selectedScale}
-          </Typography>
-          <Typography as="h4">{dateDisplay}</Typography>
-        </Stack>
-        <DataLoadingIndicator loading={isLoading || isFetching} />
-        <BarChart
-          width={600}
-          height={300}
-          data={temperatureData}
-          margin={{ top: 10, right: 10, bottom: 20, left: 30 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <Bar
-            dataKey={"temperature"}
-            legendType="circle"
-            isAnimationActive={false}
-            animationDuration={0}
-          />
-          <XAxis
-            dataKey="date"
-            scale={"band"}
-            tickFormatter={xAxisTickFormatter}
-            axisLine={false}
-          />
-          <YAxis
-            dataKey="temperature"
-            padding={{ top: 20, bottom: 0 }}
-            unit={`°${selectedScale}`}
-            axisLine={false}
-            interval={"preserveEnd"}
-            scale={vertScale}
-          />
-          <ReferenceLine stroke="gray" strokeDasharray="3 3" />
-          <Tooltip
-            label={"Temperature"}
-            labelFormatter={toolTipLabelFormatter}
-            formatter={toolTipFormatter}
-            animationDuration={500}
-          />
-          <Legend formatter={legendLabelFormatter} />
-        </BarChart>
+        <div>
+          <Stack spacing={1} style={{ textAlign: "center" }}>
+            <Typography as="h4">
+              Temperature chart in &deg;{selectedScale}
+            </Typography>
+            <Typography as="h4">{dateDisplay}</Typography>
+          </Stack>
+          <DataLoadingIndicator loading={isLoading || isFetching} />
+          <BarChart
+            width={600}
+            height={300}
+            data={temperatureData}
+            margin={{ top: 10, right: 10, bottom: 20, left: 30 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <Bar
+              dataKey={"temperature"}
+              legendType="circle"
+              isAnimationActive={false}
+              animationDuration={0}
+            />
+            <XAxis
+              dataKey="date"
+              scale={"band"}
+              tickFormatter={xAxisTickFormatter}
+              axisLine={false}
+            />
+            <YAxis
+              dataKey="temperature"
+              padding={{ top: 20, bottom: 0 }}
+              unit={`°${selectedScale}`}
+              axisLine={false}
+              interval={"preserveEnd"}
+              scale={vertScale}
+            />
+            <ReferenceLine
+              stroke="var(--grey-color-300)"
+              strokeWidth={1}
+              strokeDasharray={"10 1"}
+              y={0}
+            />
+            <Tooltip
+              label={"Temperature"}
+              labelFormatter={toolTipLabelFormatter}
+              formatter={toolTipFormatter}
+              animationDuration={500}
+            />
+            <Legend formatter={legendLabelFormatter} />
+          </BarChart>
+        </div>
       </ChartWrapper>
     </Modal>
   );

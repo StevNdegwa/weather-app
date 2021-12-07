@@ -2,18 +2,20 @@ import { Stack, styled } from "@mui/material";
 
 export const ChartWrapper = styled(Stack)`
 max-width: 700px;
-width: 100%;
 height: 400px;
 background-color: white;
-display: flex;
-justify-content:center;
-align-items:center;
+position: relative;
 border-radius: var(--border-radius-md);
 margin: 5rem auto;
-position: relative;
 overflow: auto;
+& > div{
+  width: 700px;
+  height:100%;
+  padding: 0.5rem;
+}
 @media only screen and (max-width: 800px){
-  margin: 1rem auto;
+  margin: 0 auto;
+  border-radius: 0;
 }
 & svg{
   font-size: 0.8rem;
