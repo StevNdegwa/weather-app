@@ -27,9 +27,16 @@ const ScaleSwitch = memo(() => {
           value="C"
           control={<Radio />}
           label="&deg;C"
+          aria-label="Degrees celcius scale"
           tabIndex={1}
         />
-        <FormControlLabel value="F" control={<Radio />} label="&deg;F" />
+        <FormControlLabel
+          value="F"
+          control={<Radio />}
+          label="&deg;F"
+          aria-label="Degrees farenheit scale"
+          tabIndex={2}
+        />
       </RadioGroup>
     </FormControl>
   );

@@ -39,7 +39,8 @@ export default function WeatherForecastCard({
   const selectThisCard = useCallback(() => {
     dispatch(selectCard({ date, description, icon, temperature }));
     showTempChart();
-  }, [date, description, dispatch, icon, showTempChart, temperature]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [date, description]);
 
   const dispTemperature = useMemo(
     () => getTemperature(temperature, selectedScale),

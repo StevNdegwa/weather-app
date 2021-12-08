@@ -8,7 +8,7 @@ const WebDashBoardFooter = memo(({ slideToHome }) => (
   <FooterWrapper>
     <Stack direction={"row"} spacing={2}>
       <Tooltip title="Slide to first card">
-        <IconButton aria-label="slide to home" onClick={slideToHome}>
+        <IconButton aria-label="slide to first card" onClick={slideToHome}>
           <GrHome />
         </IconButton>
       </Tooltip>

@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { GlobalStyles } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import globalStyles from "./globalStyles";
@@ -18,15 +17,8 @@ export default function App() {
   const { data, error, isLoading, isFetching, refetch } =
     useGetWeatherForecastQuery(setLocation.name);
 
-  const showAppLoader = useMemo(
-    () => loadingApp && !error,
-    [loadingApp, error]
-  );
-
-  const showDashBoard = useMemo(
-    () => !error && !loadingApp,
-    [error, loadingApp]
-  );
+  const showAppLoader = loadingApp && !error;
+  const showDashBoard = !error && !loadingApp;
 
   if (data && loadingApp) {
     dispatch(appLoaded());

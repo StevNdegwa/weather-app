@@ -44,9 +44,8 @@ An app to check the weather
     - Uses Javascript hence the rensposivity is adjusted when loading the application
     - Shows 3 weather cards when on desktop and 1 card when on mobile
 
-## Design techniques
+## Design
 - Uses material design
-- Glassmorphism
 - UI Accessibility
 - Proper data values formatting
 ## Authors
