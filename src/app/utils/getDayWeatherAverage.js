@@ -7,27 +7,21 @@ export default function getDayWeatherAverage(dayForecast = []) {
 
     if (!data.has(day)) {
       data.set(day, {
-        days: 0,
-        totalForecast: { temperature: 0 },
+        count: 0,
+        totalForecast: { temperature: 0, date },
       });
     }
 
     let dayForecast = data.get(day);
-
-    dayForecast.days++;
-    let temperature = dayForecast.totalForecast.temperature + f.temperature;
-
-    dayForecast.totalForecast = {
-      date,
-      temperature,
-    };
+    dayForecast.count++;
+    dayForecast.totalForecast.temperature = dayForecast.totalForecast.temperature + f.temperature;
   });
 
   return [...data.values()]
-    .map(({ days, totalForecast: { temperature, date } }) => {
+    .map(({ count, totalForecast: { temperature, date } }) => {
     return {
       date,
-      temperature: parseFloat(Number(temperature / days).toFixed(2)),
+      temperature: parseFloat(Number(temperature / count).toFixed(2)),
     };
   });
 }

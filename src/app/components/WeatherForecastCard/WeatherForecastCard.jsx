@@ -7,8 +7,7 @@ import getTemperature from "../../utils/getTemperature";
 import { selectDate } from "../../features/weather/selectedDateSlice";
 import { CardWrapper, Temperature, Text } from "./styles";
 
-export const formatDate = timeFormat("%a, %b %d");
-export const formatTime = timeFormat("%H: %M");
+export const formatDate = timeFormat("%a, %b %d %Y");
 
 export default function WeatherForecastCard({
   date,
@@ -18,7 +17,6 @@ export default function WeatherForecastCard({
   const { day } = useMemo(() => {
     let d = new Date(date);
     return {
-      time: formatTime(d),
       day: formatDate(d),
       date: d,
     };

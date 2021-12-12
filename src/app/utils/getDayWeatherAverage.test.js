@@ -22,7 +22,7 @@ describe("test getDayWeatherAverage", () => {
 
   test("should return the daily average", () => {
     expect(getDayWeatherAverage(forecastData)).toEqual([{
-      date: new Date("2021-12-12 15:00:00"),
+      date: new Date("2021-12-12 12:00:00"),
       temperature: 35.54,
     }])
   })
