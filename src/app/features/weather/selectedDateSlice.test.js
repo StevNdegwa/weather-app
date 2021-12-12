@@ -1,6 +1,6 @@
-import selectedCardSlice, { selectCard } from "./selectedCardSlice";
+import selectedDateSlice, { selectDate } from "./selectedDateSlice";
 
-let { reducer } = selectedCardSlice
+let { reducer } = selectedDateSlice
 
 describe("test selectedLocationSlice", () => {
 
@@ -10,8 +10,8 @@ describe("test selectedLocationSlice", () => {
 
   test("should select a card", () => {
     let prevState = null;
-    expect(reducer(prevState, selectCard({ temperature: 123.4 })))
-      .toEqual({ temperature: 123.4 });
+    expect(reducer(prevState, selectDate("2021-12-12T09:52:22.941Z")))
+      .toEqual("2021-12-12T09:52:22.941Z");
   });
 
 });

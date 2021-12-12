@@ -24,8 +24,6 @@ const weatherForecastApi = createApi({
             {
               date: forecast.dt_txt || "",
               temperature: parseFloat(Number(1.8 * (forecast.main.temp - 273) + 32).toFixed(2)), //convert to farenheit
-              icon: `http://openweathermap.org/img/wn/${forecast.weather[0].icon}@4x.png`,
-              description: `${forecast.weather[0].description || "Weather"}`,
             }
           ));
 

@@ -80,12 +80,10 @@ const WeatherCardsSlider = forwardRef(
           prevArrow={previousArrow}
           nextArrow={nextArrow}
         >
-          {forecast.map(({ description, date, icon, temperature }, index) => (
+          {forecast.map(({ date, temperature }, index) => (
             <WeatherForecastCard
               key={index}
               date={date}
-              description={description}
-              icon={icon}
               temperature={temperature}
               showTempChart={showTempChart}
             />

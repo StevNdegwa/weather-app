@@ -10,14 +10,13 @@ const format = timeFormat("%H:%M");
 
 export default function useTemperatureChart(data) {
   const selectedScale = useSelector((state) => state.selectedScale);
-  const selectedCard = useSelector((state) => state.selectedCard);
+  const selectedDate = useSelector((state) => state.selectedDate);
 
   const temperatureData = useMemo(() => {
     if (data) {
-      if (selectedCard) {
-        let date = new Date(selectedCard.date);
+      if (selectedDate) {
         return data.forecast
-          .filter((d) => new Date(d.date).getDate() === date.getDate())
+          .filter((d) => new Date(d.date).getDate() === new Date(selectedDate).getDate())
           .map((forecast) => ({
             ...forecast,
             date: new Date(forecast.date),
@@ -35,7 +34,7 @@ export default function useTemperatureChart(data) {
         }));
     }
     return [];
-  }, [selectedCard, data, selectedScale]);
+  }, [selectedDate, data, selectedScale]);
 
   const xAxisTickFormatter = useCallback((date) => {
     return format(date);

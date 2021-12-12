@@ -2,7 +2,7 @@ import { Provider } from "react-redux";
 import { renderHook } from "@testing-library/react-hooks";
 import getTemperature from "../../utils/getTemperature";
 import store from "../../features/store";
-import { selectCard } from "../../features/weather/selectedCardSlice";
+import { selectDate } from "../../features/weather/selectedDateSlice";
 import useTemperatureChart from "./useTemperatureChart";
 import { act } from "@testing-library/react-hooks";
 
@@ -17,14 +17,10 @@ const wrapper = ({ children }) => (
       {
         date: "2021-11-29 21:00:00",
         temperature: 30.16,
-        icon: "http://openweathermap.org/img/wn/13n@4x.png",
-        description: "light snow",
       },
       {
         date,
         temperature: 30.16,
-        icon: "http://openweathermap.org/img/wn/13n@4x.png",
-        description: "light snow",
       },
     ]
   };
@@ -47,13 +43,11 @@ describe("test 'useTemperatureChart'", () => {
         {
           date: new Date(date),
           temperature: getTemperature(30.16, store.getState().selectedScale).temp,
-          icon: "http://openweathermap.org/img/wn/13n@4x.png",
-          description: "light snow",
         },
       ])
 
     await act(async () => {
-      store.dispatch(selectCard(data.forecast[0]));
+      store.dispatch(selectDate(data.forecast[0].date));
     })
 
     expect(result.current.temperatureData)
@@ -61,8 +55,6 @@ describe("test 'useTemperatureChart'", () => {
         {
           date: new Date("2021-11-29 21:00:00"),
           temperature: getTemperature(30.16, store.getState().selectedScale).temp,
-          icon: "http://openweathermap.org/img/wn/13n@4x.png",
-          description: "light snow",
         },
       ])
   });
@@ -74,7 +66,7 @@ describe("test 'useTemperatureChart'", () => {
     );
 
     await act(async () => {
-      store.dispatch(selectCard(data.forecast[0]));
+      store.dispatch(selectDate(data.forecast[0]));
     })
 
     let { xAxisTickFormatter, toolTipFormatter } = result.current;

@@ -56,8 +56,6 @@ describe("test <App/> component", () => {
       {
         date: "2021-11-29 21:00:00",
         temperature: 30.16,
-        icon: "http://openweathermap.org/img/wn/13n@4x.png",
-        description: "light snow",
       },
     ];
 

@@ -4,27 +4,18 @@ import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { timeFormat } from "d3-time-format";
 import getTemperature from "../../utils/getTemperature";
-import { selectCard } from "../../features/weather/selectedCardSlice";
-import {
-  CardWrapper,
-  WeatherIcon,
-  Temperature,
-  Description,
-  DateText,
-} from "./styles";
+import { selectDate } from "../../features/weather/selectedDateSlice";
+import { CardWrapper, Temperature, Text } from "./styles";
 
-const formatDate = timeFormat("%a, %b %d");
-const formatTime = timeFormat("%H: %M");
+export const formatDate = timeFormat("%a, %b %d");
+export const formatTime = timeFormat("%H: %M");
 
 export default function WeatherForecastCard({
   date,
-  description,
-  icon,
   temperature,
   showTempChart,
 }) {
-
-  const { time, day } = useMemo(() => {
+  const { day } = useMemo(() => {
     let d = new Date(date);
     return {
       time: formatTime(d),
@@ -37,10 +28,9 @@ export default function WeatherForecastCard({
   const dispatch = useDispatch();
 
   const selectThisCard = useCallback(() => {
-    dispatch(selectCard({ date, description, icon, temperature }));
+    dispatch(selectDate(date.toJSON()));
     showTempChart();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [date, description]);
+  }, [date, dispatch, showTempChart]);
 
   const dispTemperature = useMemo(
     () => getTemperature(temperature, selectedScale),
@@ -50,20 +40,16 @@ export default function WeatherForecastCard({
   return (
     <CardWrapper onClick={selectThisCard}>
       <CardContent>
+        <Text>Avg. temperature</Text>
         <Temperature>{dispTemperature.formattedTemp}</Temperature>
-        <WeatherIcon image={icon}/>
-        <Description>{description}</Description>
-        <DateText>{time}</DateText>
-        <DateText>{day}</DateText>
+        <Text>{day}</Text>
       </CardContent>
     </CardWrapper>
   );
 }
 
 WeatherForecastCard.proTypes = {
-  date: PropTypes.string,
-  description: PropTypes.string,
-  icon: PropTypes.string,
+  date: PropTypes.instanceOf(Date),
   temperature: PropTypes.number,
   showTempChart: PropTypes.func.isRequired,
 };

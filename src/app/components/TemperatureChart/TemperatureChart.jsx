@@ -20,7 +20,7 @@ import { ChartWrapper } from "./styles";
 export default function TemperatureChart({ open, closeModal }) {
   const setLocation = useSelector((state) => state.setLocation);
   const selectedScale = useSelector((state) => state.selectedScale);
-  const selectedCard = useSelector((state) => state.selectedCard);
+  const selectedDate = useSelector((state) => state.selectedDate);
 
   const { data, isLoading, isFetching } = useGetWeatherForecastQuery(
     setLocation.name
@@ -37,10 +37,10 @@ export default function TemperatureChart({ open, closeModal }) {
 
   let dateDisplay = useMemo(
     () =>
-      selectedCard
-        ? new Date(selectedCard.date).toDateString()
+      selectedDate
+        ? new Date(selectedDate).toDateString()
         : new Date().toDateString(),
-    [selectedCard]
+    [selectedDate]
   );
 
   return (

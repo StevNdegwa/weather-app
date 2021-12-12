@@ -50,8 +50,6 @@ describe("test weather forecast api", () => {
           forecast: [
             {
               "date": "2021-11-29 21:00:00",
-              "description": "light snow",
-              "icon": "http://openweathermap.org/img/wn/13n@4x.png",
               "temperature": 30.16,
             },
           ]

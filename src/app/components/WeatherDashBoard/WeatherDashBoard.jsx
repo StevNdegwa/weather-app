@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { Fade } from "@mui/material";
 import PropTypes from "prop-types";
 import TemperatureChart from "../TemperatureChart";
@@ -7,6 +7,7 @@ import WeatherDashboardHeader from "./WeatherDashboardHeader";
 import WebDashBoardFooter from "./WebDashBoardFooter";
 import WeatherDashBoardMain from "./WeatherDashBoardMain";
 import { WeatherDashBoardWrapper, WeatherDashBoardContent } from "./styles";
+import getDayWeatherAverage from "../../utils/getDayWeatherAverage";
 
 export default function WeatherDashBoard({
   fadeIn,
@@ -16,7 +17,6 @@ export default function WeatherDashBoard({
 }) {
   const [showingTempChart, setShowingTempChart] = useState(false);
   const sliderRef = useRef();
-
   const openTempChart = useCallback(
     () => setShowingTempChart(true),
     [setShowingTempChart]
@@ -30,6 +30,10 @@ export default function WeatherDashBoard({
     sliderRef.current.goTo(0);
   }, []);
 
+  const dailyAvgWeather = useMemo(() => {
+    return getDayWeatherAverage(forecast);
+  }, [forecast]);
+
   return (
     <Fade in={fadeIn}>
       <WeatherDashBoardWrapper>
@@ -39,7 +43,7 @@ export default function WeatherDashBoard({
           <WeatherDashboardHeader reloadData={reloadData} />
           <WeatherDashBoardMain
             ref={sliderRef}
-            forecastData={forecast}
+            forecastData={dailyAvgWeather}
             openTempChart={openTempChart}
           />
           <WebDashBoardFooter slideToHome={slideToHome} />
@@ -57,8 +61,6 @@ WeatherDashBoard.propTypes = {
   forecast: PropTypes.arrayOf(
     PropTypes.shape({
       date: PropTypes.string,
-      description: PropTypes.string,
-      icon: PropTypes.string,
       temperature: PropTypes.number,
     })
   ),
