@@ -1,5 +1,7 @@
 import { GlobalStyles } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
+import { saveState } from "./features/utils";
+import store from "./features/store";
 import globalStyles from "./globalStyles";
 import { useGetWeatherForecastQuery } from "./features/weather/weatherForecastApi";
 import { appLoaded } from "./features/loader/appLoadingSlice";
@@ -8,6 +10,14 @@ import AppLayout from "./components/AppLayout";
 import WeatherDashBoard from "./components/WeatherDashBoard";
 import AppErrorBoundary from "./components/AppErrorBoundary";
 import ErrorPage from "./components/ErrorPage";
+
+store.subscribe(() => {
+  saveState(store.getState());
+  // debounce(() => {
+    
+  //   saveState(store.getState());
+  // }, 500);
+});
 
 export default function App() {
   const loadingApp = useSelector((state) => state.appLoading);

@@ -6,12 +6,13 @@ import {
   Radio,
   FormLabel,
 } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleScale } from "../../features/weather/selectedScaleSlice";
 
 const ScaleSwitch = memo(() => {
   const dispatch = useDispatch();
   const toggle = useCallback(() => dispatch(toggleScale()), [dispatch]);
+  const scale = useSelector((state) => state.selectedScale);
 
   return (
     <FormControl component="fieldset">
@@ -22,6 +23,7 @@ const ScaleSwitch = memo(() => {
         name="temperature-scale"
         row
         onChange={toggle}
+        value={scale}
       >
         <FormControlLabel
           value="C"
