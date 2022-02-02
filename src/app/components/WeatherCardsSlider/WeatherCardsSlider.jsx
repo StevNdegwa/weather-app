@@ -3,6 +3,7 @@ import {
   useState,
   forwardRef,
   useEffect,
+  useMemo
 } from "react";
 import { IconButton, useMediaQuery } from "@mui/material";
 import PropTypes from "prop-types";
@@ -14,9 +15,18 @@ import { WeatheCardsSliderWrapper, IndexSlider } from "./styles";
 const WeatherCardsSlider = forwardRef(
   ({ forecast = [], showTempChart }, ref) => {
     const [index, setIndex] = useState(0);
-    const matches = useMediaQuery("(min-width: 800px)");
+    const matches600 = useMediaQuery("(max-width: 600px)");
+    const matches900 = useMediaQuery("(max-width: 900px)");
 
-    const slidesToShowCount = matches ? 3 : 1;
+    const slidesToShowCount = useMemo(() => {
+      let cards = 3;
+      if (matches600) {
+        cards = 1
+      } else if (matches900) {
+        cards = 2;
+      }
+      return cards;
+    }, [matches900, matches600]);
 
     const handleChange = useCallback(
       (oldIndex, newIndex) => {
