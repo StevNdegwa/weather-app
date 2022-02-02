@@ -44,12 +44,6 @@ export default function TemperatureChart({ open, closeModal }) {
   );
 
   return (
-    <Modal
-      open={open}
-      onClose={closeModal}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
       <ChartWrapper>
         <div>
           <Stack spacing={1} style={{ textAlign: "center" }}>
@@ -102,7 +96,6 @@ export default function TemperatureChart({ open, closeModal }) {
           </BarChart>
         </div>
       </ChartWrapper>
-    </Modal>
   );
 }
 

@@ -37,7 +37,6 @@ export default function WeatherDashBoard({
   return (
     <Fade in={fadeIn}>
       <WeatherDashBoardWrapper>
-        <TemperatureChart open={showingTempChart} closeModal={closeTempChart} />
         <DataLoadingIndicator loading={loadingData} />
         <WeatherDashBoardContent>
           <WeatherDashboardHeader reloadData={reloadData} />
@@ -46,7 +45,11 @@ export default function WeatherDashBoard({
             forecastData={dailyAvgWeather}
             openTempChart={openTempChart}
           />
-          <WebDashBoardFooter slideToHome={slideToHome} />
+          <TemperatureChart
+            open={showingTempChart}
+            closeModal={closeTempChart}
+          />
+          {/* <WebDashBoardFooter slideToHome={slideToHome} /> */}
         </WeatherDashBoardContent>
       </WeatherDashBoardWrapper>
     </Fade>

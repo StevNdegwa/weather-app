@@ -13,6 +13,7 @@ cursor: pointer;
 display: flex;
 justify-content:center;
 align-items:center;
+${({ selected }) => selected && "border: 3px solid blue"};
 `;
 
 export const Temperature = styled(Typography)`

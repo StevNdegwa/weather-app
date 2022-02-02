@@ -23,6 +23,7 @@ export default function WeatherForecastCard({
   }, [date]);
 
   const selectedScale = useSelector((state) => state.selectedScale);
+  const selectedDate = useSelector((state) => state.selectedDate);
   const dispatch = useDispatch();
 
   const selectThisCard = useCallback(() => {
@@ -36,7 +37,10 @@ export default function WeatherForecastCard({
   );
 
   return (
-    <CardWrapper onClick={selectThisCard}>
+    <CardWrapper
+      onClick={selectThisCard}
+      selected={date.toJSON() === selectedDate}
+    >
       <CardContent>
         <Text>Avg. temperature</Text>
         <Temperature>{dispTemperature.formattedTemp}</Temperature>

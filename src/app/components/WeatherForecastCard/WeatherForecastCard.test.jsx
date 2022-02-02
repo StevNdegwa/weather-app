@@ -9,7 +9,7 @@ import { formatDate } from "./WeatherForecastCard";
 describe("test <WeatherForecastCard/> component", () => {
   let wrapper,
     showTempChart = jest.fn(),
-    date = new Date(),
+    date = new Date("2021-12-12T07:29:45.123Z"),
     props = {
       date,
       temperature: 120.4,
