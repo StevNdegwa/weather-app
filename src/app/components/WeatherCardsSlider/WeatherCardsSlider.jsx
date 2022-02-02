@@ -2,10 +2,9 @@ import {
   useCallback,
   useState,
   forwardRef,
-  useLayoutEffect,
   useEffect,
 } from "react";
-import { IconButton } from "@mui/material";
+import { IconButton, useMediaQuery } from "@mui/material";
 import PropTypes from "prop-types";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import "react-slideshow-image/dist/styles.css";
@@ -15,7 +14,9 @@ import { WeatheCardsSliderWrapper, IndexSlider } from "./styles";
 const WeatherCardsSlider = forwardRef(
   ({ forecast = [], showTempChart }, ref) => {
     const [index, setIndex] = useState(0);
-    const [slidesToShowCount, setSlidesToShowCount] = useState(1);
+    const matches = useMediaQuery("(min-width: 800px)");
+
+    const slidesToShowCount = matches ? 3 : 1;
 
     const handleChange = useCallback(
       (oldIndex, newIndex) => {
@@ -24,13 +25,6 @@ const WeatherCardsSlider = forwardRef(
       [setIndex]
     );
 
-    useLayoutEffect(() => {
-      if (window.matchMedia) {
-        if (window.matchMedia("(min-width: 800px)").matches) {
-          setSlidesToShowCount(3);
-        }
-      }
-    }, []);
 
     const slideOnKeyDown = useCallback(
       (event) => {
